@@ -6,16 +6,25 @@ import imagenGithub from '../assets/imagegithub.png'
 
 function Inicio() {
   const cardRef = useRef(null)
+  const indicadorRef = useRef(null)
 
   // Al bajar, la card del centro se aleja hacia atrás según cuánto se haya bajado
+  // y el indicador "Desliza" se desvanece del todo
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     let frame = 0
 
     function actualizar() {
       frame = 0
       const p = Math.min(window.scrollY / window.innerHeight, 1)
+
+      // Indicador: desaparece en los primeros ~120px de scroll
+      const visible = 1 - Math.min(window.scrollY / 120, 1)
+      indicadorRef.current.style.opacity = String(visible)
+      indicadorRef.current.style.visibility = visible === 0 ? 'hidden' : 'visible'
+
+      if (reducido) return
       cardRef.current.style.transform =
         `perspective(1000px) translateZ(${p * -400}px) translateY(${p * 120}px)`
       cardRef.current.style.opacity = String(1 - p * 0.9)
@@ -62,6 +71,14 @@ function Inicio() {
             Ver portafolio
           </Link>
         </section>
+
+        {/* Indicador para bajar: aparece y desaparece cada 5 s */}
+        <div className="indicador-bajar" ref={indicadorRef} aria-hidden="true">
+          <div className="indicador-bajar-contenido">
+            <span className="indicador-bajar-texto">Desliza</span>
+            <span className="indicador-bajar-linea"></span>
+          </div>
+        </div>
       </main>
 
       {/* Sección parallax */}
