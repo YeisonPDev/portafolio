@@ -44,7 +44,7 @@ function Inicio() {
         <span className="barra-titulo">Yeison.Devp</span>
         <ul>
           <li>
-            <a href="#" aria-label="GitHub">
+            <a href="https://github.com/YeisonPDev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <img src={imagenGithub} style={{ borderRadius: '50%' }} alt="GitHub" className="icono-barra" />
             </a>
           </li>

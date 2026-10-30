@@ -197,8 +197,14 @@ function ParallaxGithub() {
         </div>
 
         <div className="parallax-card">
-          {/* Cambia href="#" por el enlace que quieras */}
-          <a href="#" className="parallax-logo" aria-label="GitHub">
+          {/* Enlace a mi perfil de GitHub (se abre en otra pestaña) */}
+          <a
+            href="https://github.com/YeisonPDev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="parallax-logo"
+            aria-label="GitHub"
+          >
             <img src={imagenGithub} alt="GitHub" />
           </a>
           <div className="parallax-texto">
